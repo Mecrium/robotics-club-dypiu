@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robotics Club - DY Patil International University</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===================================
+       ROBOTICS CLUB WEBSITE - ALL STYLES
+       Dark Theme | Neon Blue/Purple
+       =================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-bg: #0a0e27;
+      --secondary-bg: #1a1f3a;
+      --tertiary-bg: #252d47;
+      --neon-blue: #00d4ff;
+      --neon-purple: #b700ff;
+      --electric-purple: #7b2cbf;
+      --silver: #e0e0e0;
+      --text-dark: #1a1f3a;
+      --text-light: #d0d0d0;
+      --accent-glow: #00ffff;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Dark Mode Toggle */
+    body.light-mode {
+      --primary-bg: #f5f5f5;
+      --secondary-bg: #ffffff;
+      --tertiary-bg: #f0f0f0;
+      --text-dark: #1a1f3a;
+      --text-light: #2d2d2d;
+    }
+
+    /* ===================================
+       ANIMATIONS
+       =================================== */
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--neon-purple); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(20px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+      }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ===================================
+       NAVBAR / HEADER
+       =================================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 39, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--neon-blue);
+      animation: slideDown 0.6s ease-out;
+    }
+
+    body.light-mode header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 2px solid var(--electric-purple);
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(0 0 10px var(--neon-blue));
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--neon-blue);
+      margin: 5px 0;
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .theme-toggle {
+      background: var(--secondary-bg);
+      border: 2px solid var(--neon-blue);
+      color: var(--neon-blue);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* ===================================
+       HERO SECTION
+       =================================== */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2a1a4a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(183, 0, 255, 0.1) 0%, transparent 50%);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: slideUp 0.8s ease-out;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.8rem);
+      color: var(--neon-blue);
+      margin-bottom: 2rem;
+      animation: fadeIn 1s ease-out 0.3s both;
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .typing-effect {
+      display: inline-block;
+      border-right: 3px solid var(--neon-purple);
+      padding-right: 5px;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeIn 1s ease-out 0.5s both;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeIn 1s ease-out 0.7s both;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--neon-blue), var(--electric-purple));
+      color: var(--primary-bg);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--neon-blue);
+      border: 2px solid var(--neon-blue);
+    }
+
+    .btn-secondary:hover {
+      background: var(--neon-blue);
+      color: var(--primary-bg);
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+    }
+
+    .hero-robot {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.15;
+      animation: robotFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes robotFloat {
+      0%, 100% { transform: translateY(-50%) rotate(0deg); }
+      50% { transform: translateY(-70px) rotate(5deg); }
+    }
+
+    /* ===================================
+       ABOUT SECTION
+       =================================== */
+
+    .about {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.05));
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-align: center;
+      margin-bottom: 3rem;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      border-radius: 2px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .about-card {
+      background: var(--secondary-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--neon-blue);
+      transition: var(--transition);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .about-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+    }
+
+    .about-card h3 {
+      color: var(--neon-blue);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .about-card p {
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 212, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid var(--neon-blue);
+      transition: var(--transition);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .stat-item:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===================================
+       COMMITTEE SECTION
+       =================================== */
+
+    .committee {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(0, 212, 255, 0.05), transparent);
+    }
+
+    .committee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .member-card {
+      background: var(--secondary-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .member-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+      border-color: var(--neon-blue);
+    }
+
+    .member-image {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .member-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .member-card:hover .member-image img {
+      transform: scale(1.1);
+    }
+
+    .member-info {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .member-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--neon-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .member-role {
+      font-size: 0.9rem;
+      color: var(--neon-purple);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .member-description {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ===================================
+       EVENTS SECTION
+       =================================== */
+
+    .events {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .events-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .event-card {
+      background: var(--secondary-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      position: relative;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
+    }
+
+    .event-header {
+      padding: 1.5rem;
+      background: rgba(0, 212, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    .event-date {
+      font-size: 0.85rem;
+      color: var(--neon-purple);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .event-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--neon-blue);
+    }
+
+    .event-body {
+      padding: 1.5rem;
+    }
+
+    .event-venue {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .event-description {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .event-footer {
+      padding: 0 1.5rem 1.5rem;
+    }
+
+    .register-btn {
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      background: var(--neon-blue);
+      color: var(--primary-bg);
+      border: none;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .register-btn:hover {
+      background: var(--neon-purple);
+      transform: scale(1.05);
+    }
+
+    /* ===================================
+       GALLERY SECTION
+       =================================== */
+
+    .gallery {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      height: 250px;
+      cursor: pointer;
+      background: var(--secondary-bg);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1) rotate(2deg);
+      filter: brightness(1.2);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 212, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+      backdrop-filter: blur(5px);
+    }
+
+    .gallery-icon {
+      font-size: 2.5rem;
+      color: var(--neon-blue);
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+
+    .gallery-cta {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* ===================================
+       WORKSHOPS SECTION
+       =================================== */
+
+    .workshops {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.05));
+    }
+
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+    }
+
+    .timeline-items {
+      display: grid;
+      gap: 3rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 2rem;
+      background: var(--secondary-bg);
+      border-radius: 10px;
+      border-left: 4px solid var(--neon-blue);
+      transition: var(--transition);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 2rem;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--neon-blue);
+      border: 3px solid var(--primary-bg);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
+
+    .timeline-title {
+      font-size: 1.4rem;
+      color: var(--neon-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-subtitle {
+      font-size: 0.9rem;
+      color: var(--neon-purple);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-description {
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ===================================
+       PROJECTS SECTION
+       =================================== */
+
+    .projects {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: var(--secondary-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      animation: slideUp 0.8s ease-out;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
+      border-color: var(--neon-blue);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+    }
+
+    .project-info {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      color: var(--neon-blue);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .project-description {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tech-tag {
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--neon-blue);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      border: 1px solid var(--neon-blue);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      flex: 1;
+      padding: 0.75rem;
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--neon-blue);
+      border: 1px solid var(--neon-blue);
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .project-link:hover {
+      background: var(--neon-blue);
+      color: var(--primary-bg);
+    }
+
+    /* ===================================
+       JOIN SECTION
+       =================================== */
+
+    .join {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(0, 212, 255, 0.05), transparent);
+      text-align: center;
+    }
+
+    .join-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .join-description {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .join-form {
+      background: var(--secondary-bg);
+      padding: 2.5rem;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--tertiary-bg);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 5px;
+      color: var(--text-light);
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--neon-blue), var(--electric-purple));
+      color: var(--primary-bg);
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    /* ===================================
+       FOOTER
+       =================================== */
+
+    footer {
+      background: var(--secondary-bg);
+      border-top: 2px solid var(--neon-blue);
+      padding: 3rem 2rem 1rem;
+      margin-top: 5rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--neon-blue);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-section p {
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--neon-blue);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid var(--neon-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neon-blue);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .social-icon:hover {
+      background: var(--neon-blue);
+      color: var(--primary-bg);
+      transform: scale(1.2) translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid rgba(0, 212, 255, 0.2);
+      padding-top: 2rem;
+      color: var(--text-light);
+    }
+
+    .footer-bottom p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      color: var(--primary-bg);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+    }
+
+    /* ===================================
+       RESPONSIVE DESIGN
+       =================================== */
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--secondary-bg);
+        padding: 2rem;
+        border-bottom: 2px solid var(--neon-blue);
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-robot {
+        width: 200px;
+        height: 200px;
+        right: 0;
+        opacity: 0.08;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        display: none;
+      }
+
+      .timeline-dot {
+        display: none;
+      }
+
+      .timeline-item {
+        border-top: 3px solid var(--neon-blue);
+        border-left: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER / NAVBAR -->
+  <header>
+    <nav>
+      <div class="logo">
+        <i class="fas fa-robot"></i>
+        <span>RoboClub</span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#committee">Committee</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#join">Join Us</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i> Dark
+      </button>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <div class="hero-robot">
+      <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <rect x="60" y="80" width="80" height="100" rx="10" fill="none" stroke="#00d4ff" stroke-width="2"/>
+        <circle cx="100" cy="60" r="25" fill="none" stroke="#00d4ff" stroke-width="2"/>
+        <circle cx="90" cy="55" r="5" fill="#00d4ff"/>
+        <circle cx="110" cy="55" r="5" fill="#00d4ff"/>
+        <line x1="60" y1="110" x2="20" y2="110" stroke="#00d4ff" stroke-width="2"/>
+        <line x1="140" y1="110" x2="180" y2="110" stroke="#00d4ff" stroke-width="2"/>
+        <line x1="80" y1="180" x2="70" y2="230" stroke="#00d4ff" stroke-width="2"/>
+        <line x1="120" y1="180" x2="130" y2="230" stroke="#00d4ff" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <h1>Robotics Club</h1>
+      <p class="hero-subtitle">
+        <span class="typing-effect">DY Patil International University</span>
+      </p>
+      <p class="hero-description">
+        "Innovate. Build. Automate."<br>
+        Engineering the Future Through Robotics
+      </p>
+      <div class="hero-buttons">
+        <a href="#join" class="btn btn-primary">
+          <i class="fas fa-rocket"></i> Join the Club
+        </a>
+        <a href="#events" class="btn btn-secondary">
+          <i class="fas fa-calendar"></i> View Events
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about">
+    <h2 class="section-title">About the Club</h2>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <h3><i class="fas fa-history"></i> Our History</h3>
+        <p>
+          The Robotics Club was established under the Semiconductor Engineering Department of DY Patil International University.
+          Initially managed by a single dedicated senior student, the club has now evolved under the second committee leadership.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3><i class="fas fa-target"></i> Our Mission</h3>
+        <p>
+          To foster innovation and technical excellence by providing a platform for students to design, build, and test
+          robotic solutions. We aim to create engineers who can solve real-world problems through robotics.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3><i class="fas fa-lightbulb"></i> Our Vision</h3>
+        <p>
+          To become the leading robotics club, recognized for groundbreaking projects, competitive excellence, and
+          fostering a culture of innovation and collaboration.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3><i class="fas fa-chart-line"></i> Our Goals</h3>
+        <p>
+          Organize quarterly workshops on advanced robotics topics. Participate in national competitions.
+          Develop innovative projects in AI, automation, and embedded systems.
+        </p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number" data-target="150">0</div>
+        <div class="stat-label">Active Members</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="12">0</div>
+        <div class="stat-label">Projects Completed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="8">0</div>
+        <div class="stat-label">Competitions Won</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="24">0</div>
+        <div class="stat-label">Workshop Sessions</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMITTEE SECTION -->
+  <section class="committee" id="committee">
+    <h2 class="section-title">Our Team - Second Committee (2026-27)</h2>
+
+    <div class="committee-grid">
+      <div class="member-card">
+        <div class="member-image">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="member-info">
+          <div class="member-name">President</div>
+          <div class="member-role">Leadership</div>
+          <div class="member-description">Visionary leader guiding the club towards excellence.</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-image">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="member-info">
+          <div class="member-name">Secretary</div>
+          <div class="member-role">Management</div>
+          <div class="member-description">Coordinating events and communications.</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-image">
+          <i class="fas fa-wallet"></i>
+        </div>
+        <div class="member-info">
+          <div class="member-name">Treasurer</div>
+          <div class="member-role">Finance</div>
+          <div class="member-description">Managing club finances and budgets.</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-image">
+          <i class="fas fa-code"></i>
+        </div>
+        <div class="member-info">
+          <div class="member-name">Technical Lead 1</div>
+          <div class="member-role">Tech Coordinator</div>
+          <div class="member-description">Leading software development initiatives.</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-image">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <div class="member-info">
+          <div class="member-name">Technical Lead 2</div>
+          <div class="member-role">Tech Coordinator</div>
+          <div class="member-description">Overseeing embedded systems projects.</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-image">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="member-info">
+          <div class="member-name">Technical Lead 3</div>
+          <div class="member-role">Tech Coordinator</div>
+          <div class="member-description">Managing robotics platform integration.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS SECTION -->
+  <section class="events" id="events">
+    <h2 class="section-title">Upcoming Events</h2>
+
+    <div class="events-container">
+      <div class="event-card">
+        <div class="event-header">
+          <div class="event-date">
+            <i class="fas fa-calendar"></i>
+            22nd February 2026
+          </div>
+          <div class="event-title">AI & Robotics Workshop</div>
+        </div>
+        <div class="event-body">
+          <div class="event-venue">
+            <i class="fas fa-map-marker"></i>
+            Lab 5, Semiconductor Department
+          </div>
+          <div class="event-description">
+            Learn the fundamentals of AI integration with robotics.
+          </div>
+        </div>
+        <div class="event-footer">
+          <button class="register-btn">Register Now</button>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-header">
+          <div class="event-date">
+            <i class="fas fa-calendar"></i>
+            15th March 2026
+          </div>
+          <div class="event-title">Robo War 2026</div>
+        </div>
+        <div class="event-body">
+          <div class="event-venue">
+            <i class="fas fa-map-marker"></i>
+            Seminar Hall A, Main Campus
+          </div>
+          <div class="event-description">
+            Annual robot combat competition with autonomous fighting robots.
+          </div>
+        </div>
+        <div class="event-footer">
+          <button class="register-btn">Register Now</button>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-header">
+          <div class="event-date">
+            <i class="fas fa-calendar"></i>
+            28th January 2026
+          </div>
+          <div class="event-title">Embedded Systems Bootcamp</div>
+        </div>
+        <div class="event-body">
+          <div class="event-venue">
+            <i class="fas fa-map-marker"></i>
+            Electronics Lab, Sem Building
+          </div>
+          <div class="event-description">
+            Intensive 3-day bootcamp on microcontrollers and embedded programming.
+          </div>
+        </div>
+        <div class="event-footer">
+          <button class="register-btn">Register Now</button>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-header">
+          <div class="event-date">
+            <i class="fas fa-calendar"></i>
+            5th April 2026
+          </div>
+          <div class="event-title">Automation Seminar</div>
+        </div>
+        <div class="event-body">
+          <div class="event-venue">
+            <i class="fas fa-map-marker"></i>
+            Conference Room B
+          </div>
+          <div class="event-description">
+            Exploring industrial automation and IoT applications.
+          </div>
+        </div>
+        <div class="event-footer">
+          <button class="register-btn">Register Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section class="gallery" id="gallery">
+    <h2 class="section-title">Gallery</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/300x250/00d4ff/000?text=Robo+War" alt="Robo War">
+        <div class="gallery-overlay">
+          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/300x250/7b2cbf/000?text=Workshop" alt="Workshop">
+        <div class="gallery-overlay">
+          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/300x250/00d4ff/000?text=Bootcamp" alt="Bootcamp">
+        <div class="gallery-overlay">
+          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/300x250/7b2cbf/000?text=Team+Event" alt="Team Event">
+        <div class="gallery-overlay">
+          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/300x250/00d4ff/000?text=Project+Demo" alt="Project Demo">
+        <div class="gallery-overlay">
+          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/300x250/7b2cbf/000?text=Seminar" alt="Seminar">
+        <div class="gallery-overlay">
+          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOPS SECTION -->
+  <section class="workshops" id="workshops">
+    <h2 class="section-title">Upcoming Workshops & Seminars</h2>
+
+    <div class="timeline">
+      <div class="timeline-items">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Introduction to Robotics</div>
+          <div class="timeline-subtitle">February 2026</div>
+          <div class="timeline-description">
+            A comprehensive introduction to robotics fundamentals, covering kinematics, dynamics, and control systems.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Advanced AI in Automation</div>
+          <div class="timeline-subtitle">March 2026</div>
+          <div class="timeline-description">
+            Explore machine learning applications in robotic automation and intelligent systems.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">Embedded Systems Deep Dive</div>
+          <div class="timeline-subtitle">April 2026</div>
+          <div class="timeline-description">
+            Advanced embedded systems programming with real-world robotics applications.
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-title">IoT & Connected Robots</div>
+          <div class="timeline-subtitle">May 2026</div>
+          <div class="timeline-description">
+            Building connected robotic systems using IoT principles and cloud technologies.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section class="projects" id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="project-info">
+          <div class="project-title">Autonomous Combat Robot</div>
+          <div class="project-description">
+            A fully autonomous robot capable of detecting and engaging in combat scenarios using AI and computer vision.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">Arduino</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link"><i class="fas fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <div class="project-info">
+          <div class="project-title">IoT Smart Home Bot</div>
+          <div class="project-description">
+            An intelligent home automation robot that controls lights, temperature, and security systems.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Raspberry Pi</span>
+            <span class="tech-tag">IoT</span>
+            <span class="tech-tag">MQTT</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link"><i class="fas fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-image">
+          <i class="fas fa-cube"></i>
+        </div>
+        <div class="project-info">
+          <div class="project-title">Drone Navigation System</div>
+          <div class="project-description">
+            Advanced drone with autonomous navigation, obstacle detection, and GPS-based waypoint tracking.
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">C++</span>
+            <span class="tech-tag">ROS</span>
+            <span class="tech-tag">Gazebo</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link"><i class="fas fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN SECTION -->
+  <section class="join" id="join">
+    <h2 class="section-title">Join the Robotics Club</h2>
+
+    <div class="join-content">
+      <p class="join-description">
+        Are you passionate about robotics, automation, and innovation? Join our growing community of engineers and makers!
+      </p>
+
+      <div class="join-form">
+        <form id="joinForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+              <option value="">Select your department</option>
+              <option value="semiconductor">Semiconductor Engineering</option>
+              <option value="cse">Computer Science</option>
+              <option value="mechanical">Mechanical Engineering</option>
+              <option value="electrical">Electrical Engineering</option>
+              <option value="electronics">Electronics Engineering</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="experience">Experience Level</label>
+            <select id="experience" name="experience" required>
+              <option value="">Select your experience</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Why do you want to join?</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your interest"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Robotics Club</h3>
+        <p>Innovation through Robotics & Engineering</p>
+        <p>DY Patil International University</p>
+        <p>Akurdi, Pune</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#join">Join Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-envelope"></i> roboticsclub@dypatil.edu</p>
+        <p><i class="fas fa-phone"></i> +91 XXXX-XXXX-XX</p>
+        <div class="social-icons">
+          <a href="https://instagram.com" class="social-icon" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://linkedin.com" class="social-icon" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com" class="social-icon" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Robotics Club - DY Patil International University. All rights reserved.</p>
+      <p>Designed & Developed by the Second Committee</p>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // ===================================
+    // ROBOTICS CLUB WEBSITE - ALL JAVASCRIPT
+    // ===================================
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlElement = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const isLightMode = document.body.classList.contains('light-mode');
+      localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+      themeToggle.innerHTML = isLightMode
+        ? '<i class="fas fa-sun"></i> Light'
+        : '<i class="fas fa-moon"></i> Dark';
+    });
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (
