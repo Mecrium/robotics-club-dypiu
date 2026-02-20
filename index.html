@@ -115,25 +115,6 @@
       50% { opacity: 0.5; }
     }
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes glowPulse {
-      0%, 100% {
-        box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
-      }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
     /* ===================================
        NAVBAR / HEADER
        =================================== */
@@ -309,13 +290,6 @@
       animation: fadeIn 1s ease-out 0.4s both;
       text-shadow: 0 0 15px rgba(183, 0, 255, 0.3);
       font-weight: 500;
-    }
-
-    .typing-effect {
-      display: inline-block;
-      border-right: 3px solid var(--neon-purple);
-      padding-right: 5px;
-      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
     }
 
     .hero-description {
@@ -537,7 +511,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 4rem;
+      font-size: 3rem;
       color: rgba(255, 255, 255, 0.3);
       overflow: hidden;
       position: relative;
@@ -1139,7 +1113,7 @@
       <!-- President -->
       <div class="member-card">
         <div class="member-image">
-          <img src="https://via.placeholder.com/300x250/1a1f3a/00d4ff?text=Saumy+Yadav" alt="Mr. Saumy Yadav">
+          <img src="https://image2url.com/r2/default/images/1771566750795-8b198e1d-88c0-4ef3-beab-8a5944ae63ba.jpeg" alt="Mr. Saumy Yadav">
         </div>
         <div class="member-info">
           <div class="member-name">Mr. Saumy Yadav</div>
@@ -1151,7 +1125,7 @@
       <!-- Secretary -->
       <div class="member-card">
         <div class="member-image">
-          <img src="https://via.placeholder.com/300x250/1a1f3a/00d4ff?text=Jerfin+Geesha" alt="Ms. Jerfin Geesha">
+          <img src="https://image2url.com/r2/default/images/1771566728289-657d1306-8d01-49e9-b69f-c86633459e33.jpeg" alt="Ms. Jerfin Geesha">
         </div>
         <div class="member-info">
           <div class="member-name">Ms. Jerfin Geesha</div>
@@ -1163,7 +1137,7 @@
       <!-- Treasurer -->
       <div class="member-card">
         <div class="member-image">
-          <img src="https://via.placeholder.com/300x250/1a1f3a/00d4ff?text=Devesh+Sankhla" alt="Mr. Devesh Sankhla">
+          <img src="https://image2url.com/r2/default/images/1771566729286-6cc5807c-1114-4310-81d2-aaaf45432c4c.jpeg" alt="Mr. Devesh Sankhla">
         </div>
         <div class="member-info">
           <div class="member-name">Mr. Devesh Sankhla</div>
@@ -1175,7 +1149,7 @@
       <!-- Technical Coordinator 1 -->
       <div class="member-card">
         <div class="member-image">
-          <img src="https://via.placeholder.com/300x250/1a1f3a/00d4ff?text=Soham+Musmade" alt="Mr. Soham Musmade">
+          <img src="https://image2url.com/r2/default/images/1771566725024-9b2acfaa-9b52-4256-b4f5-b116ddc9d129.jpeg" alt="Mr. Soham Musmade">
         </div>
         <div class="member-info">
           <div class="member-name">Mr. Soham Musmade</div>
@@ -1184,10 +1158,10 @@
         </div>
       </div>
 
-      <!-- Technical Coordinator 2 - AYAN DESAI -->
+      <!-- Technical Coordinator 2 -->
       <div class="member-card">
         <div class="member-image">
-          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAD6APoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Mr. Ayan Desai">
+          <img src="https://image2url.com/r2/default/images/1771566726337-06168198-2c58-4984-b74f-fbeb7dea76ed.jpeg" alt="Mr. Ayan Desai">
         </div>
         <div class="member-info">
           <div class="member-name">Mr. Ayan Desai</div>
@@ -1196,10 +1170,10 @@
         </div>
       </div>
 
-      <!-- Technical Coordinator 3 - SHARAD JATHAR -->
+      <!-- Technical Coordinator 3 -->
       <div class="member-card">
         <div class="member-image">
-          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAD6APoDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ybnJ2eoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba2uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" alt="Mr. Sharad Jathar">
+          <img src="https://image2url.com/r2/default/images/1771566730228-ed2da89f-bde0-4322-88ba-7b377ead7fc4.jpeg" alt="Mr. Sharad Jathar">
         </div>
         <div class="member-info">
           <div class="member-name">Mr. Sharad Jathar</div>
@@ -1479,15 +1453,10 @@
 
   <!-- JAVASCRIPT -->
   <script>
-    // ===================================
-    // ROBOTICS CLUB WEBSITE - ALL JAVASCRIPT
-    // ===================================
-
     // Theme Toggle
     const themeToggle = document.getElementById('themeToggle');
-    const htmlElement = document.documentElement;
-
     const savedTheme = localStorage.getItem('theme') || 'dark';
+    
     if (savedTheme === 'light') {
       document.body.classList.add('light-mode');
       themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light';
@@ -1506,17 +1475,15 @@
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
-    if (hamburger) {
-      hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-      });
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
 
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('active');
-        });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
       });
-    }
+    });
 
     // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1524,10 +1491,7 @@
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
@@ -1549,19 +1513,47 @@
       }, 16);
     }
 
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
+    // Intersection Observer
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-
-          // Animate counters if present
           const counters = entry.target.querySelectorAll('.stat-number');
           counters.forEach(counter => {
             const target = parseInt(counter.getAttribute('data-target')) || 0;
-            if (target > 0 
+            if (target > 0 && counter.textContent === '0') {
+              animateCounter(counter, target);
+            }
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.about-card, .stat-item, .member-card, .event-card, .gallery-item, .notice-item').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Back to Top Button
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Event Registration
+    document.querySelectorAll('.register-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const eventName = this.closest('.event-card').querySelector('.event-title').textContent;
+        alert(`You've registered for: ${eventName}\n\nWe'll send you confirmation details soon!`);
+      });
+    });
+
+    console.log('✨ Robotics Club Website Loaded Successfully!');
+  </script>
+</body>
+</html>
