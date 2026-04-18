@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Robotics Club - DY Patil International University</title>
   
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +14,7 @@
   <style>
     /* ===================================
        ROBOTICS CLUB WEBSITE - ALL STYLES
-       Dark Theme | Neon Blue/Purple
+       Light Theme Default | Neon Blue/Purple
        =================================== */
 
     * {
@@ -25,18 +23,28 @@
       box-sizing: border-box;
     }
 
+    /* DEFAULT TO LIGHT THEME */
     :root {
-      --primary-bg: #0a0e27;
-      --secondary-bg: #1a1f3a;
-      --tertiary-bg: #252d47;
+      --primary-bg: #f5f5f5;
+      --secondary-bg: #ffffff;
+      --tertiary-bg: #e8e8e8;
       --neon-blue: #00d4ff;
       --neon-purple: #b700ff;
       --electric-purple: #7b2cbf;
       --silver: #e0e0e0;
-      --text-dark: #1a1f3a;
-      --text-light: #d0d0d0;
+      --text-dark: #ffffff;
+      --text-light: #2d2d2d; /* Main text color for light theme */
       --accent-glow: #00ffff;
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* DARK MODE TOGGLE */
+    body.dark-mode {
+      --primary-bg: #0a0e27;
+      --secondary-bg: #1a1f3a;
+      --tertiary-bg: #252d47;
+      --text-dark: #1a1f3a;
+      --text-light: #d0d0d0;
     }
 
     html {
@@ -49,15 +57,7 @@
       color: var(--text-light);
       line-height: 1.6;
       overflow-x: hidden;
-    }
-
-    /* Dark Mode Toggle */
-    body.light-mode {
-      --primary-bg: #f5f5f5;
-      --secondary-bg: #ffffff;
-      --tertiary-bg: #f0f0f0;
-      --text-dark: #1a1f3a;
-      --text-light: #2d2d2d;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* ===================================
@@ -65,44 +65,18 @@
        =================================== */
 
     @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     @keyframes slideUp {
-      from {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent; }
-      50% { border-color: var(--neon-purple); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes float {
@@ -123,15 +97,16 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(10, 14, 39, 0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--neon-blue);
+      border-bottom: 2px solid var(--electric-purple);
       animation: slideDown 0.6s ease-out;
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
-    body.light-mode header {
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom: 2px solid var(--electric-purple);
+    body.dark-mode header {
+      background: rgba(10, 14, 39, 0.95);
+      border-bottom: 2px solid var(--neon-blue);
     }
 
     nav {
@@ -237,9 +212,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2a1a4a 100%);
+      background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 50%, var(--tertiary-bg) 100%);
       position: relative;
       overflow: hidden;
+      transition: background 0.3s ease;
     }
 
     .hero::before {
@@ -284,12 +260,14 @@
     }
 
     .hero-subtitle-sub {
-      font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+      font-size: clamp(2.5rem, 6vw, 4.5rem); /* Made Bigger */
       color: var(--neon-purple);
       margin-bottom: 2rem;
       animation: fadeIn 1s ease-out 0.4s both;
-      text-shadow: 0 0 15px rgba(183, 0, 255, 0.3);
-      font-weight: 500;
+      text-shadow: 0 0 25px rgba(183, 0, 255, 0.5); /* Stronger attractive shadow */
+      font-weight: 800; /* Bolder */
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .hero-description {
@@ -327,7 +305,7 @@
 
     .btn-primary {
       background: linear-gradient(135deg, var(--neon-blue), var(--electric-purple));
-      color: var(--primary-bg);
+      color: #ffffff;
       box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
     }
 
@@ -344,7 +322,7 @@
 
     .btn-secondary:hover {
       background: var(--neon-blue);
-      color: var(--primary-bg);
+      color: #ffffff;
       transform: translateY(-3px);
       box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
     }
@@ -645,7 +623,7 @@
       width: 100%;
       padding: 0.75rem 1.5rem;
       background: var(--neon-blue);
-      color: var(--primary-bg);
+      color: #ffffff;
       border: none;
       border-radius: 5px;
       font-weight: 600;
@@ -884,7 +862,7 @@
 
     .social-icon:hover {
       background: var(--neon-blue);
-      color: var(--primary-bg);
+      color: #ffffff;
       transform: scale(1.2) translateY(-3px);
     }
 
@@ -899,6 +877,18 @@
       margin-bottom: 0.5rem;
     }
 
+    .visitor-counter {
+      margin-top: 15px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--neon-purple);
+      background: rgba(183, 0, 255, 0.05);
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(183, 0, 255, 0.2);
+    }
+
     /* Back to Top Button */
     .back-to-top {
       position: fixed;
@@ -907,7 +897,7 @@
       width: 50px;
       height: 50px;
       background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-      color: var(--primary-bg);
+      color: #ffffff;
       border: none;
       border-radius: 50%;
       font-size: 1.5rem;
@@ -985,7 +975,6 @@
   </style>
 </head>
 <body>
-  <!-- HEADER / NAVBAR -->
   <header>
     <nav>
       <div class="logo">
@@ -998,6 +987,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#committee">Committee</a></li>
         <li><a href="#events">Events</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#notices">Notices</a></li>
       </ul>
 
@@ -1013,7 +1003,6 @@
     </nav>
   </header>
 
-  <!-- HERO SECTION -->
   <section class="hero" id="hero">
     <div class="hero-robot">
       <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
@@ -1030,8 +1019,8 @@
 
     <div class="hero-content">
       <h1>DY Patil International University</h1>
-      <p class="hero-subtitle-main">Under the Department of Semiconductor Engineering</p>
-      <p class="hero-subtitle-sub">Robotics Club</p>
+      <p class="hero-subtitle-main">Department Of Semiconductor</p>
+      <div class="hero-subtitle-sub">Robotics Club</div>
       <p class="hero-description">
         "Innovate. Build. Automate."<br>
         Engineering the Future Through Robotics
@@ -1047,7 +1036,6 @@
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
   <section class="about" id="about">
     <h2 class="section-title">About the Club</h2>
 
@@ -1105,12 +1093,10 @@
     </div>
   </section>
 
-  <!-- COMMITTEE SECTION -->
   <section class="committee" id="committee">
     <h2 class="section-title">Our Team - Second Committee (2025-26)</h2>
 
     <div class="committee-grid">
-      <!-- President -->
       <div class="member-card">
         <div class="member-image">
           <img src="https://image2url.com/r2/default/images/1771566750795-8b198e1d-88c0-4ef3-beab-8a5944ae63ba.jpeg" alt="Mr. Saumy Yadav">
@@ -1122,7 +1108,6 @@
         </div>
       </div>
 
-      <!-- Secretary -->
       <div class="member-card">
         <div class="member-image">
           <img src="https://image2url.com/r2/default/images/1771566728289-657d1306-8d01-49e9-b69f-c86633459e33.jpeg" alt="Ms. Jerfin Geesha">
@@ -1134,7 +1119,6 @@
         </div>
       </div>
 
-      <!-- Treasurer -->
       <div class="member-card">
         <div class="member-image">
           <img src="https://image2url.com/r2/default/images/1771566729286-6cc5807c-1114-4310-81d2-aaaf45432c4c.jpeg" alt="Mr. Devesh Sankhla">
@@ -1146,7 +1130,6 @@
         </div>
       </div>
 
-      <!-- Technical Coordinator 1 -->
       <div class="member-card">
         <div class="member-image">
           <img src="https://image2url.com/r2/default/images/1771566725024-9b2acfaa-9b52-4256-b4f5-b116ddc9d129.jpeg" alt="Mr. Soham Musmade">
@@ -1158,7 +1141,6 @@
         </div>
       </div>
 
-      <!-- Technical Coordinator 2 -->
       <div class="member-card">
         <div class="member-image">
           <img src="https://image2url.com/r2/default/images/1771566726337-06168198-2c58-4984-b74f-fbeb7dea76ed.jpeg" alt="Mr. Ayan Desai">
@@ -1170,7 +1152,6 @@
         </div>
       </div>
 
-      <!-- Technical Coordinator 3 -->
       <div class="member-card">
         <div class="member-image">
           <img src="https://image2url.com/r2/default/images/1771566730228-ed2da89f-bde0-4322-88ba-7b377ead7fc4.jpeg" alt="Mr. Sharad Jathar">
@@ -1184,9 +1165,8 @@
     </div>
   </section>
 
-  <!-- EVENTS SECTION -->
   <section class="events" id="events">
-    <h2 class="section-title">Upcoming Events</h2>
+    <h2 class="section-title">Events</h2>
 
     <div class="events-container">
       <div class="event-card">
@@ -1237,39 +1217,17 @@
         <div class="event-header">
           <div class="event-date">
             <i class="fas fa-calendar"></i>
-            28th January 2025
+            10th April 2025
           </div>
-          <div class="event-title">Embedded Systems Bootcamp</div>
+          <div class="event-title">IoT & Automation</div>
         </div>
         <div class="event-body">
           <div class="event-venue">
             <i class="fas fa-map-marker"></i>
-            Electronics Lab, Sem Building
+            Online Webinar
           </div>
           <div class="event-description">
-            Intensive 3-day bootcamp on microcontrollers and embedded programming.
-          </div>
-        </div>
-        <div class="event-footer">
-          <button class="register-btn">Register Now</button>
-        </div>
-      </div>
-
-      <div class="event-card">
-        <div class="event-header">
-          <div class="event-date">
-            <i class="fas fa-calendar"></i>
-            5th April 2025
-          </div>
-          <div class="event-title">Automation Seminar</div>
-        </div>
-        <div class="event-body">
-          <div class="event-venue">
-            <i class="fas fa-map-marker"></i>
-            Conference Room B
-          </div>
-          <div class="event-description">
-            Exploring industrial automation and IoT applications.
+            Guest lecture on industrial automation and IoT devices.
           </div>
         </div>
         <div class="event-footer">
@@ -1279,199 +1237,119 @@
     </div>
   </section>
 
-  <!-- GALLERY SECTION -->
   <section class="gallery" id="gallery">
-    <h2 class="section-title">Gallery</h2>
-
+    <h2 class="section-title">Project Gallery</h2>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="https://via.placeholder.com/300x250/00d4ff/000?text=Robo+War" alt="Robo War">
+        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Robotics Project 1">
         <div class="gallery-overlay">
-          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+          <i class="fas fa-search-plus gallery-icon"></i>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://via.placeholder.com/300x250/7b2cbf/000?text=Workshop" alt="Workshop">
+        <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Robotics Project 2">
         <div class="gallery-overlay">
-          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+          <i class="fas fa-search-plus gallery-icon"></i>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://via.placeholder.com/300x250/00d4ff/000?text=Bootcamp" alt="Bootcamp">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Robotics Project 3">
         <div class="gallery-overlay">
-          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+          <i class="fas fa-search-plus gallery-icon"></i>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://via.placeholder.com/300x250/7b2cbf/000?text=Team+Event" alt="Team Event">
+        <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Robotics Project 4">
         <div class="gallery-overlay">
-          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://via.placeholder.com/300x250/00d4ff/000?text=Project+Demo" alt="Project Demo">
-        <div class="gallery-overlay">
-          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <img src="https://via.placeholder.com/300x250/7b2cbf/000?text=Seminar" alt="Seminar">
-        <div class="gallery-overlay">
-          <div class="gallery-icon"><i class="fas fa-expand-alt"></i></div>
+          <i class="fas fa-search-plus gallery-icon"></i>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NOTICE BOARD SECTION -->
   <section class="notice-board" id="notices">
     <h2 class="section-title">Notice Board</h2>
-
     <div class="notices-container">
       <div class="notice-item">
-        <div class="notice-date">
-          <i class="fas fa-bell"></i>
-          19th February 2025
-        </div>
-        <div class="notice-title">Registration Open for AI Workshop</div>
-        <div class="notice-content">
-          Registration is now open for our upcoming AI & Robotics Workshop. Interested students can register through the Events section. Limited seats available!
-        </div>
-        <span class="notice-priority high">Important</span>
+        <div class="notice-date"><i class="fas fa-clock"></i> Posted: Feb 20, 2025</div>
+        <div class="notice-title">Call for Core Team Volunteers</div>
+        <div class="notice-content">We are looking for enthusiastic first and second-year students to join the organizing committee for the upcoming Robo War event.</div>
+        <span class="notice-priority high">High Priority</span>
       </div>
-
       <div class="notice-item">
-        <div class="notice-date">
-          <i class="fas fa-bell"></i>
-          18th February 2025
-        </div>
-        <div class="notice-title">Committee Meeting - Sunday 3 PM</div>
-        <div class="notice-content">
-          All committee members are requested to attend the weekly meeting this Sunday at 3:00 PM in the Semiconductor Department Lab.
-        </div>
-        <span class="notice-priority medium">Moderate</span>
+        <div class="notice-date"><i class="fas fa-clock"></i> Posted: Feb 15, 2025</div>
+        <div class="notice-title">Weekly Meetup Location Change</div>
+        <div class="notice-content">This Friday's hardware troubleshooting session has been moved to Lab 3 due to maintenance in the main lab.</div>
+        <span class="notice-priority medium">Medium</span>
       </div>
-
       <div class="notice-item">
-        <div class="notice-date">
-          <i class="fas fa-bell"></i>
-          17th February 2025
-        </div>
-        <div class="notice-title">Robo War 2025 - Team Registration Deadline</div>
-        <div class="notice-content">
-          Last date for Robo War 2025 team registration is 28th February 2025. Teams must register with at least 3 members and provide project details.
-        </div>
-        <span class="notice-priority high">Important</span>
-      </div>
-
-      <div class="notice-item">
-        <div class="notice-date">
-          <i class="fas fa-bell"></i>
-          15th February 2025
-        </div>
-        <div class="notice-title">New Members Welcome!</div>
-        <div class="notice-content">
-          We are recruiting new members for the Robotics Club! If you're interested in robotics, automation, or embedded systems, contact any committee member.
-        </div>
-        <span class="notice-priority medium">Moderate</span>
-      </div>
-
-      <div class="notice-item">
-        <div class="notice-date">
-          <i class="fas fa-bell"></i>
-          14th February 2025
-        </div>
-        <div class="notice-title">Lab Access Schedule Updated</div>
-        <div class="notice-content">
-          The lab access schedule has been updated. Please check the latest timings for lab access in the Semiconductor Department office.
-        </div>
-        <span class="notice-priority low">Info</span>
-      </div>
-
-      <div class="notice-item">
-        <div class="notice-date">
-          <i class="fas fa-bell"></i>
-          12th February 2025
-        </div>
-        <div class="notice-title">Embedded Systems Bootcamp - Free Registration</div>
-        <div class="notice-content">
-          The 3-day Embedded Systems Bootcamp is free for all students! Register now to secure your seat. Technical knowledge not required.
-        </div>
+        <div class="notice-date"><i class="fas fa-clock"></i> Posted: Feb 10, 2025</div>
+        <div class="notice-title">Component Inventory Updated</div>
+        <div class="notice-content">New Arduino Megas, motor drivers, and Raspberry Pi modules have been added to the club inventory. Members can issue them starting Monday.</div>
         <span class="notice-priority low">Info</span>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Robotics Club</h3>
-        <p>Innovation through Robotics & Engineering</p>
-        <p>DY Patil International University</p>
-        <p>Akurdi, Pune</p>
+        <h3><i class="fas fa-robot"></i> RoboClub DYPIU</h3>
+        <p>Empowering the next generation of robotics engineers through hands-on learning, innovation, and teamwork.</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+        </div>
       </div>
-
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#events">Events</a></li>
           <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#notices">Notices</a></li>
+          <li><a href="#notices">Notice Board</a></li>
         </ul>
       </div>
-
       <div class="footer-section">
         <h3>Contact Us</h3>
-        <p><i class="fas fa-envelope"></i> roboticsclub@dypatil.edu</p>
-        <p><i class="fas fa-phone"></i> +91 XXXX-XXXX-XX</p>
-        <div class="social-icons">
-          <a href="https://instagram.com" class="social-icon" target="_blank">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://linkedin.com" class="social-icon" target="_blank">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com" class="social-icon" target="_blank">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
+        <ul class="footer-links">
+          <li><i class="fas fa-map-marker-alt"></i> DYPIU Campus, Akurdi</li>
+          <li><i class="fas fa-envelope"></i> robotics@dypiu.ac.in</li>
+          <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+        </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <p>&copy; 2025 Robotics Club - DY Patil International University. All rights reserved.</p>
-      <p>Designed & Developed by the Second Committee</p>
+      <p>&copy; 2025-26 Robotics Club, DY Patil International University. All rights reserved.</p>
+      
+      <div class="visitor-counter">
+        <i class="fas fa-users"></i> Total Visitors: <span id="visitCount">...</span>
+      </div>
     </div>
   </footer>
 
-  <!-- BACK TO TOP BUTTON -->
   <button class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
+    <i class="fas fa-chevron-up"></i>
   </button>
 
-  <!-- JAVASCRIPT -->
   <script>
-    // Theme Toggle
+    // Theme Toggle Logic
     const themeToggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const body = document.body;
     
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-mode');
-      themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light';
-    }
-
     themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('light-mode');
-      const isLightMode = document.body.classList.contains('light-mode');
-      localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-      themeToggle.innerHTML = isLightMode
-        ? '<i class="fas fa-sun"></i> Light'
-        : '<i class="fas fa-moon"></i> Dark';
+      body.classList.toggle('dark-mode');
+      if(body.classList.contains('dark-mode')) {
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light';
+      } else {
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark';
+      }
     });
 
-    // Mobile Menu Toggle
+    // Mobile Hamburger Menu
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
@@ -1479,81 +1357,73 @@
       navLinks.classList.toggle('active');
     });
 
+    // Close mobile menu when a link is clicked
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
       });
     });
 
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Animated Counter
-    function animateCounter(element, target, duration = 2000) {
-      const start = 0;
-      const increment = target / (duration / 16);
-      let current = start;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          element.textContent = target;
-          clearInterval(timer);
-        } else {
-          element.textContent = Math.floor(current);
-        }
-      }, 16);
-    }
-
-    // Intersection Observer
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counters = entry.target.querySelectorAll('.stat-number');
-          counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target')) || 0;
-            if (target > 0 && counter.textContent === '0') {
-              animateCounter(counter, target);
-            }
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.about-card, .stat-item, .member-card, .event-card, .gallery-item, .notice-item').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Back to Top Button
+    // Back to Top Button Logic
     const backToTopBtn = document.getElementById('backToTop');
+    
     window.addEventListener('scroll', () => {
-      backToTopBtn.classList.toggle('show', window.pageYOffset > 300);
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
     });
 
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Event Registration
-    document.querySelectorAll('.register-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const eventName = this.closest('.event-card').querySelector('.event-title').textContent;
-        alert(`You've registered for: ${eventName}\n\nWe'll send you confirmation details soon!`);
+    // Number Counter Animation for Stats
+    const stats = document.querySelectorAll('.stat-number');
+    let hasAnimated = false;
+
+    const animateStats = () => {
+      stats.forEach(stat => {
+        const target = +stat.getAttribute('data-target');
+        const count = +stat.innerText;
+        const inc = target / 100;
+
+        if (count < target) {
+          stat.innerText = Math.ceil(count + inc);
+          setTimeout(animateStats, 20);
+        } else {
+          stat.innerText = target + (target > 5 ? '+' : '');
+        }
       });
+    };
+
+    window.addEventListener('scroll', () => {
+      const statsSection = document.querySelector('.stats');
+      if (!statsSection) return;
+      
+      const sectionPos = statsSection.getBoundingClientRect().top;
+      const screenPos = window.innerHeight / 1.3;
+
+      if (sectionPos < screenPos && !hasAnimated) {
+        animateStats();
+        hasAnimated = true;
+      }
     });
 
-    console.log('✨ Robotics Club Website Loaded Successfully!');
+    // Visitor Counter Logic (Frontend Simulation using LocalStorage)
+    window.addEventListener('DOMContentLoaded', () => {
+      let count = localStorage.getItem('roboClubVisits');
+      if (!count) {
+        // Generate a realistic starting base number between 1200 and 1500
+        count = Math.floor(Math.random() * 300) + 1200; 
+      }
+      count = parseInt(count) + 1; // Increment on each load
+      localStorage.setItem('roboClubVisits', count);
+      
+      // Update the counter in the footer
+      document.getElementById('visitCount').innerText = count.toLocaleString();
+    });
   </script>
 </body>
 </html>
